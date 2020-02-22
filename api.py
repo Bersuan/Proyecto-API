@@ -1,7 +1,7 @@
 from flask import Flask, request
 from pymongo import MongoClient
 from bson.objectid import ObjectId
-from verificar import listMessage
+from verificar import listMessage, verification
 import json
 from errorHandler import jsonErrorHandler
 
@@ -47,9 +47,8 @@ def createMessage (chat_id, user_id, message):
     
     '''Añadimos mensajes a MongoDB de un ususario y de un chat'''
 
-    coll_message = db['Message']
-    mensaje = coll_message.insert_one({ "message": message, "user": ObjectId(user_id), "chat":ObjectId(chat_id)}).inserted_id
-    return str(mensaje)
+    return verification(chat_id, user_id, message)
+ 
 
 @jsonErrorHandler
 @app.route('/list/chats/<chat_id>')
