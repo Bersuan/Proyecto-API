@@ -36,3 +36,4 @@ def listMessage (chat_id):
         allMessages = list(coll_message.find({'chat':{"$eq":ObjectId(chat_id)}},{'_id':0, 'message':1}))
 
     return allMessages
+    

@@ -9,5 +9,5 @@ def jsonErrorHandler(fn):
             print(traceback.format_exc())
             return {
                 "error": str(e)
-            }, 404
+            }, 404     
     return wrapper

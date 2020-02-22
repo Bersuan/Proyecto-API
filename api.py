@@ -55,6 +55,7 @@ def createMessage (chat_id, user_id, message):
 def createListMessage(chat_id):
     lst = listMessage(chat_id)
     return json.dumps(lst)
+    
 
 app.run("0.0.0.0", 5000, debug=True)
  
