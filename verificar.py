@@ -6,26 +6,27 @@ import json
 
 client = MongoClient("mongodb://localhost:27017/")
 db = client['Emotion']
-
+'''
 def verification (chat_id, user_id, message):
     coll_user = db['User']
-    find_id = list(coll_user.find({'_id':{'$eq':ObjectId(user_id)}}))
+    find_id = coll_user.find({'_id':{'$eq':ObjectId(user_id)}})
 
     coll_chat = db['Chat']
-    find_chat = list(coll_chat.find({"$and":[{"_id":{"$eq":ObjectId(chat_id)}},{"users":{"$eq":ObjectId(user_id)}}]}))
+    print(coll_chat)
+    find_chat = coll_chat.find({"$and":[{"_id":{"$eq":ObjectId(chat_id)}},{"users":{"$eq":ObjectId(user_id)}}]})
 
-    if len(find_id) == 0:
-        raise NameError(f"Not found user with id {user_id}")
+    if find_id.count() <= 0:
+        raise NameError(f"Not found user with id: {user_id}")
 
-    elif len(find_chat) == 0:
-        raise NameError(f"Not found chat with id {chat_id}")
+    elif find_chat.count() <= 0:
+        raise NameError(f"Not found chat with id: {chat_id}")
 
     else:
         coll_message = db['Message']
         mensaje = coll_message.insert_one({ "chat":ObjectId(chat_id), "user": ObjectId(user_id), "message": message }).inserted_id
         return str(mensaje)
 
-
+'''
 def listMessage (chat_id):
     coll_chat = db['Chat']
     list_message = coll_chat.find({'_id':{'$eq':ObjectId(chat_id)}})
@@ -36,4 +37,6 @@ def listMessage (chat_id):
         allMessages = list(coll_message.find({'chat':{"$eq":ObjectId(chat_id)}},{'_id':0, 'message':1}))
 
     return allMessages
+
+
     
