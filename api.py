@@ -2,6 +2,7 @@ from flask import Flask, request
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from verificar import mensajesChat, mensajeUsuario
+from sentimientos import formatendadoChats, formatendadoUsers
 import json
 from errorHandler import jsonErrorHandler
 
@@ -63,6 +64,18 @@ def createListMessage(chat_id):
 def listaMensajesUsuario(user_id):
     newList = mensajeUsuario(user_id)
     return json.dumps(newList)
+
+
+@app.route('/analize/chats/<chat_id>')
+def sentiemintoChat(chat_id):
+    sentChat = formatendadoChats(chat_id)
+    return json.dumps(sentChat)
+
+
+@app.route('/analize/users/<user_id>')
+def sentiemintoUser(user_id):
+    sentUser = formatendadoUsers(user_id)
+    return json.dumps(sentUser)
 
 
 app.run("0.0.0.0", 5000, debug=True)

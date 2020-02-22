@@ -6,6 +6,7 @@ import json
 
 client = MongoClient("mongodb://localhost:27017/")
 db = client['Emotion']
+
 '''
 def verification (chat_id, user_id, message):
     coll_user = db['User']
