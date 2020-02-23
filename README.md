@@ -1,5 +1,5 @@
 # Proyecto-API
-!(https://raw.githubusercontent.com/bersuan/Proyecto-API/master/input/foto-proyecto.jpg)
+![FotoPortada](https://raw.githubusercontent.com/bersuan/Proyecto-API/master/input/foto-proyecto.jpg)
 
 Deseamos analizar los mensajes de chat 'públicos' de mi equipo y crear métricas de opinión
 de las diferentes personas en tu equipo. El objetivo de este proyecto es analizar las conversaciones de su equipo,
