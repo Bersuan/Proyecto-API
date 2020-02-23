@@ -8,30 +8,31 @@ client = MongoClient("mongodb://localhost:27017/")
 db = client['Emotion']
 
 '''
-def verification (chat_id, user_id, message):
+def verification(user_id, chat_id, message):
     coll_user = db['User']
-    find_id = coll_user.find({'_id':{'$eq':ObjectId(user_id)}})
+    find_id = coll_user.find({'_id': {'$eq': ObjectId(user_id)}})
 
     coll_chat = db['Chat']
     find_chat = coll_chat.find(
-        {"$and":[{"_id":{"$eq":ObjectId(chat_id)}},{"users":{"$eq":ObjectId(user_id)}}]})
+        {"$and": [{"_id": {"$eq": ObjectId(chat_id)}}, {"users": {"$eq": ObjectId(user_id)}}]})
 
-    if find_id.count() <= 0:
-        raise NameError(f"Not found user with id: {user_id}")
-
-    elif find_chat.count() <= 0:
+    if find_chat.count() <= 0:
         raise NameError(f"Not found chat with id: {chat_id}")
+
+    elif find_id.count() <= 0:
+        raise NameError(f"Not found user with id: {user_id}")
 
     else:
         coll_message = db['Message']
-        mensaje = coll_message.insert_one({ "chat":ObjectId(
-            chat_id), "user": ObjectId(user_id), "message": message }).inserted_id
+        mensaje = coll_message.insert_one({"chat": ObjectId(
+            chat_id), "user": ObjectId(user_id), "message": message}).inserted_id
         return str(mensaje)
-
 '''
 
 
 def mensajesChat(chat_id):
+    '''Obtenemos los mensajes escritos en un unico chat'''
+
     coll_chat = db['Chat']
     list_message = coll_chat.find({'_id': {'$eq': ObjectId(chat_id)}})
     if list_message.count() == 0:
@@ -45,6 +46,8 @@ def mensajesChat(chat_id):
 
 
 def mensajeUsuario(user_id):
+    '''Obtenemos los mensajes escritos por un usuario en cualquier chat'''
+
     coll_user = db['User']
     find_user = coll_user.find({'_id': {'$eq': ObjectId(user_id)}})
 
