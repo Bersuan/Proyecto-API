@@ -17,7 +17,7 @@ Para ello crearemos una API con las siguientes caracteristicas:
 
   - Creamos una lista de usuarios que seran miembros de nuestros chats y los guardaremos en una coleccion de nuestra base de datos de MongoDB.
   - Creamos un sistema de recomendacion en el cual nos muestra cuales son los usuarios mas parecidos entre si.
-  ![FotoRecomendacion](https://raw.githubusercontent.com/bersuan/Proyecto-API/master/input/1_yYFoZKYpp7MT_iAqoE1lRw.png
+  ![FotoRecomendacion](https://raw.githubusercontent.com/bersuan/Proyecto-API/master/input/1_yYFoZKYpp7MT_iAqoE1lRw.png)
 
 ### 2. Para la creación de chats y conversaciones:
 
