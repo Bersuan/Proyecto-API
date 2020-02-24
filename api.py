@@ -16,7 +16,9 @@ app = Flask(__name__)
 
 @app.route('/user/create/<name>')
 def createUser(name):
-    '''Importamos usuarios a MongoDB'''
+    '''
+    Importamos usuarios a MongoDB
+    '''
 
     coll_user = db['User']
     usuario = coll_user.insert_one({
@@ -29,7 +31,9 @@ def createUser(name):
 
 @app.route('/chats/create/<chats>')
 def crateChats(chats):
-    '''Importamos chats a MongoDB'''
+    '''
+    Importamos chats a MongoDB
+    '''
 
     coll_chat = db['Chat']
     whatsapp = coll_chat.insert_one({
@@ -43,7 +47,9 @@ def crateChats(chats):
 
 @app.route('/insertUser/create/<chat_id>/<name>')
 def insertUserChat(chat_id, name):
-    '''Añadimos usuarios al chat'''
+    '''
+    Añadimos usuarios al chat
+    '''
 
     coll_chat = db['Chat']
     insertUser = coll_chat.update({"_id": ObjectId(chat_id)}, {
@@ -54,9 +60,11 @@ def insertUserChat(chat_id, name):
 
 @app.route('/createMessage/create/<user_id>/<chat_id>/<message>')
 def createMessage(user_id, chat_id, message):
-    '''Añadimos mensajes a MongoDB de un ususario y de un chat'''
+    '''
+    Añadimos mensajes a MongoDB de un ususario y de un chat
+    '''
 
-    # return verification(user_id, chat_id, message)
+    # return verification(user_id, chat_id, message) #Queda pendiente por si puedo usar la funcion de verificar
     coll_message = db['Message']
     mensaje = coll_message.insert_one({"chat": ObjectId(
         chat_id), "user": ObjectId(user_id), "message": message}).inserted_id
