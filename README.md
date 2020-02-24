@@ -28,3 +28,7 @@ Para ello crearemos una API con las siguientes caracteristicas:
   - Para comprobar el resultado de nuestra API realicaremos una requests en la cual se podrán obtenes todos los mensajes escrito tanto en un grupo como por un usuario.
   - Por ultimo crearemos un json con todos los sentimientos de los mensajes en el chat de un grupo o de un usuario.
   ![FotoFinal](https://raw.githubusercontent.com/bersuan/Proyecto-API/master/input/textBlob.jpg)
+
+### 4. Recomendación de usuario:
+ 
+  - Finalmente, con sklearn recomendamos al usuario sus 3 usuarios mas similares.
