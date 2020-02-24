@@ -5,6 +5,7 @@ from verificar import mensajesChat, mensajeUsuario
 from sentimientos import formatendadoChats, formatendadoUsers
 import json
 from errorHandler import jsonErrorHandler
+from recomendacion import cadaUsuario
 
 
 client = MongoClient("mongodb://localhost:27017/")
@@ -87,6 +88,12 @@ def sentiemintoChat(chat_id):
 def sentiemintoUser(user_id):
     sentUser = formatendadoUsers(user_id)
     return json.dumps(sentUser)
+
+
+@app.route('/recommend/users/<user_id>')
+def recommendUser(user_id):
+    recomUser = cadaUsuario(user_id)
+    return json.dumps(recomUser)
 
 
 app.run("0.0.0.0", 5000, debug=True)
