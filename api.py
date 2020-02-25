@@ -71,33 +71,33 @@ def createMessage(user_id, chat_id, message):
 
     return str(mensaje)
 
-
+# Requests para sacar la lista de mesajes del chat elegido.
 @jsonErrorHandler
 @app.route('/list/chats/<chat_id>')
 def createListMessage(chat_id):
     lst = mensajesChat(chat_id)
     return json.dumps(lst)
 
-
+# Requests para sacar la lista de mesajes del usuario elegido.
 @jsonErrorHandler
 @app.route('/list/user/<user_id>')
 def listaMensajesUsuario(user_id):
     newList = mensajeUsuario(user_id)
     return json.dumps(newList)
 
-
+# Requests para sacar los sentimientos de mesajes del chat elegido.
 @app.route('/analize/chats/<chat_id>')
 def sentiemintoChat(chat_id):
     sentChat = formatendadoChats(chat_id)
     return json.dumps(sentChat)
 
-
+# Requests para sacar los sentimientos de mesajes del usuarios elegido.
 @app.route('/analize/users/<user_id>')
 def sentiemintoUser(user_id):
     sentUser = formatendadoUsers(user_id)
     return json.dumps(sentUser)
 
-
+# Requests para recomendar a un usuario los tres usuarios mas parecidos.
 @app.route('/recommend/users/<user_id>')
 def recommendUser(user_id):
     recomUser = cadaUsuario(user_id)

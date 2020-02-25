@@ -12,6 +12,10 @@ from sklearn.metrics.pairwise import cosine_similarity as distance
 client = MongoClient("mongodb://localhost:27017/Emotion")
 db = client.get_database()
 
+'''
+Creamos una matriz de los ususarios mas similares respecto a los mensajes escritos
+'''
+
 collection1 = db.Message
 data1 = pd.DataFrame(list(collection1.find()))
 affinity = data1[['user', 'message']]
@@ -33,15 +37,18 @@ np.fill_diagonal(sim_df.values, 0)
 
 
 def cadaUsuario(user_id):
+
     a = sim_df[ObjectId(user_id)]
     a = pd.DataFrame(a)
-    similares = a.sort_values([ObjectId(user_id)], ascending=False).head(3)
+    similares = a.sort_values(
+        [ObjectId(user_id)], ascending=False).head(3)
     similares = similares.reset_index().rename(columns={'index': 'Usuarios'})
     a = list(similares.Usuarios)
     return getname(a)
 
 
 def getname(numerito):
+
     recomendados = []
     for i in numerito:
         query = {'_id': ObjectId(i)}

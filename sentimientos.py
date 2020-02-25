@@ -8,7 +8,9 @@ db = client['Emotion']
 
 
 def formatendadoChats(chat_id):
-    '''Analizamos los sentimientos de los mensajes escritos en un grupo'''
+    '''
+    Analizamos los sentimientos de los mensajes escritos en un grupo
+    '''
 
     tup = []
     coll_message = db['Message']
@@ -24,7 +26,9 @@ def formatendadoChats(chat_id):
 
 
 def formatendadoUsers(user_id):
-    '''Analizamos los sentimientos de los mensajes escritos por un usuario'''
+    '''
+    Analizamos los sentimientos de los mensajes escritos por un usuario
+    '''
 
     tup1 = []
     coll_message = db['Message']

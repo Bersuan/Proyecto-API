@@ -7,8 +7,12 @@ import json
 client = MongoClient("mongodb://localhost:27017/")
 db = client['Emotion']
 
+
 '''
 def verification(user_id, chat_id, message):
+
+#Verificar si existe el usuario y si pertenece al chat donde se va a importar ese mensaje
+
     coll_user = db['User']
     find_id = coll_user.find({'_id': {'$eq': ObjectId(user_id)}})
 
@@ -31,7 +35,9 @@ def verification(user_id, chat_id, message):
 
 
 def mensajesChat(chat_id):
-    '''Obtenemos los mensajes escritos en un unico chat'''
+    '''
+    Obtenemos los mensajes escritos en un unico chat
+    '''
 
     coll_chat = db['Chat']
     list_message = coll_chat.find({'_id': {'$eq': ObjectId(chat_id)}})
@@ -46,7 +52,9 @@ def mensajesChat(chat_id):
 
 
 def mensajeUsuario(user_id):
-    '''Obtenemos los mensajes escritos por un usuario en cualquier chat'''
+    '''
+    Obtenemos los mensajes escritos por un usuario en cualquier chat
+    '''
 
     coll_user = db['User']
     find_user = coll_user.find({'_id': {'$eq': ObjectId(user_id)}})
